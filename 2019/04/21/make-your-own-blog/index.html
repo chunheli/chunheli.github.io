@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -86,7 +86,7 @@
 <meta property="og:url" content="http://yoursite.com/2019/04/21/make-your-own-blog/index.html">
 <meta property="og:site_name" content="Richard&#39;s Blog">
 <meta property="og:description" content="平时就有记录的习惯，我经常使用的记录软件是有道云笔记，因为它和印象笔记相比使用起来更加简洁方便。后面觉得 Hexo 的 Next 主题搭建的个人博客界面也很干净简洁，十分喜欢，更重要的是写博客也是一件很 cool 的事。于是我花了一天的时间，在 Mac 环境下使用 Hexo + Github 搭建了个人博客。因为 GitHub Pages 免费提供的空间功能，整个搭建过程很简单，我接下来介绍如何搭">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2019-04-22T15:11:43.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac 下使用 Hexo + GitHub 搭建个人博客">
@@ -106,7 +106,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -138,7 +138,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -186,7 +186,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            首页
+            Home
           </a>
         </li>
       
@@ -196,7 +196,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            标签
+            Tags
           </a>
         </li>
       
@@ -206,7 +206,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            分类
+            Categories
           </a>
         </li>
       
@@ -216,7 +216,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
-            归档
+            Archives
           </a>
         </li>
       
@@ -280,9 +280,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-21T02:38:57+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-21T02:38:57+08:00">
                 2019-04-21
               </time>
             
@@ -294,7 +294,7 @@
           
           
             <span class="post-updated">
-              &nbsp; | &nbsp; 更新于
+              &nbsp; | &nbsp; Updated on
               <time itemprop="dateUpdated" datetime="2019-04-22T23:11:43+08:00" content="2019-04-22">
                 2019-04-22
               </time>
@@ -310,7 +310,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -334,7 +334,7 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-eye"></i>   阅读次数
+            <span class="page-pv"><i class="fa fa-eye"></i>   Views
             <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
@@ -487,6 +487,21 @@
 
       
       
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
       
 
       
@@ -515,7 +530,9 @@
           
 
   
-    <div id="gitalk-container"></div>
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80Mzg3OS8yMDQxNA"></div>
+    </div>
 
   
 
@@ -542,10 +559,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+            Overview
           </li>
         </ul>
       
@@ -568,7 +585,7 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">日志</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -579,7 +596,7 @@
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
                   <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">分类</span>
+                  <span class="site-state-item-name">categories</span>
                 </a>
               </div>
             
@@ -590,7 +607,7 @@
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
                   <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">标签</span>
+                  <span class="site-state-item-name">tags</span>
                 </a>
               </div>
             
@@ -694,17 +711,17 @@
 
   
     <span class="site-uv">
-      <i class="fa fa-user"></i> 访客数
+      <i class="fa fa-user"></i> Visitors
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      人
+      
     </span>
   
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"></i> 总访问量
+      <i class="fa fa-eye"></i> Views
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      次
+      
     </span>
   
 </div>
@@ -844,6 +861,17 @@
 
 
   
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
 
 
 
@@ -855,22 +883,6 @@
 
 
 
-
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-   <script type="text/javascript">
-        var gitalk = new Gitalk({
-          clientID: '3509aed8ac05bd5270b6',
-          clientSecret: '68aee7dae589abda86ccd507e25b26b4c4635285',
-          repo: 'blog-comments',
-          owner: 'chunheli',
-          admin: ['chunheli'],
-          id: location.pathname,
-          distractionFreeMode: 'true'
-        })
-        gitalk.render('gitalk-container')           
-       </script>
 
 
 
@@ -887,6 +899,31 @@
   
 
   
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
   
 
   
