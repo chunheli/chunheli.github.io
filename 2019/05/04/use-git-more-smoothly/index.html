@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Richard&#39;s Blog">
 <meta property="og:description" content="git 简介git 是目前最流行的分布式版本控制系统，大家都知道，它的诞生是由于 Linux 系统之父林纳斯痛恨集中式的版本控制系统 CVS 和 SVN，花了两周的时间写出来的。分布式系统最突出的特点是它的去中心化。git 不像 CVS 或 SVN 那样需要有一台存放版本库的中央服务器，而是在每个用户电脑上都有一个完整的版本库，可以在自己的电脑上进行代码的修改与提交，不需要联网，因此速度很快，就算">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-04T09:28:34.137Z">
+<meta property="og:updated_time" content="2019-05-04T09:39:51.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="更流畅地使用分布式版本控制系统 git">
 <meta name="twitter:description" content="git 简介git 是目前最流行的分布式版本控制系统，大家都知道，它的诞生是由于 Linux 系统之父林纳斯痛恨集中式的版本控制系统 CVS 和 SVN，花了两周的时间写出来的。分布式系统最突出的特点是它的去中心化。git 不像 CVS 或 SVN 那样需要有一台存放版本库的中央服务器，而是在每个用户电脑上都有一个完整的版本库，可以在自己的电脑上进行代码的修改与提交，不需要联网，因此速度很快，就算">
@@ -295,7 +295,7 @@
           
             <span class="post-updated">
               &nbsp; | &nbsp; Updated on
-              <time itemprop="dateUpdated" datetime="2019-05-04T17:28:34+08:00" content="2019-05-04">
+              <time itemprop="dateUpdated" datetime="2019-05-04T17:39:51+08:00" content="2019-05-04">
                 2019-05-04
               </time>
             </span>
@@ -383,14 +383,14 @@
 <p>可以看出，<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>、<code>=======</code> 和 <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> 标记出了冲突的位置，<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> 和  <code>=======</code> 中间的部分称为 <code>ours</code>，<code>=======</code> 和 <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> 中间的部分称为 <code>theirs</code>，如果仅保留单方的修改，则可以通过下面的命令来实现而不需要在文本中进行编辑：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout --ours GOT.txt    <span class="comment"># =&gt; Arya Start</span></span><br><span class="line">$ git checkout --theirs GOT.txt  <span class="comment"># =&gt; Tyrion Lannister</span></span><br></pre></td></tr></table></figure>
 <p>然后执行 <code>git commit -am &#39;fix conflicts&#39;</code> 提交为版本 D。如果项目中很多文件发生了冲突，则可以使用 <code>git diff &lt;filename&gt;</code> 来查看单个文件的冲突内容，并使用上述命令依次解决。</p>
-<h3 id="git-之版本回退"><a href="#git-之版本回退" class="headerlink" title="git 之版本回退"></a>git 之版本回退</h3><p>试想你开发上线的新功能，因测试不够周全而出现了问题，而且问题目前还无法定位，老板让你立刻版本回退，你心想：“坏了，自己从没遇到过这种版本回退的情况，要怎么办呢？”，为了让你不在原地一脸懵逼，我告诉你怎么办。</p>
+<h3 id="git-之版本回退"><a href="#git-之版本回退" class="headerlink" title="git 之版本回退"></a>git 之版本回退</h3><p>试想你开发上线的新功能，因测试不够周全而出现了问题，而且问题目前还无法定位，老板让你立刻版本回退，你心想：“坏了，自己从没遇到过这种版本回退的情况，要怎么办呢？”，为了让你不在原地一脸懵逼，可以继续往下看。</p>
 <p>首先，回退操作过程中为了保险起见，创建一个当前 <code>master</code> 分支的备份分支 <code>master_backup</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch master_backup</span><br></pre></td></tr></table></figure>
 <p>如果想要简单粗暴一些，只需执行以下命令即可完成回退操作：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard HEAD^     <span class="comment"># 回退至上一版本</span></span><br><span class="line">$ git push -f origin master  <span class="comment"># 将本地分支强推至远程</span></span><br></pre></td></tr></table></figure>
-<p>在 git 中， <code>HEAD</code> 指当前版本，<code>HEAD^</code> 指上一个版本，上上个版本则是 <code>HEAD^^</code>，如果往上 100 个版本呢？ 可以写成 <code>HEAD~100</code>。不过 <code>git push -f</code> 是令人嗤之以鼻的操作，因为它将远程仓库的提交记录完全覆盖为你本地的记录，这就有可能导致别人辛辛苦苦开发的代码都被你给搞没了！曾因为 <code>git push -f</code> 这个命令发生过命案你敢信！所以使用这个命令的时候一定要<strong>谨慎谨慎再谨慎</strong>！</p>
+<p>在 git 中， <code>HEAD</code> 指当前版本，<code>HEAD^</code> 指上一个版本，上上个版本则是 <code>HEAD^^</code>，如果往上 100 个版本呢？ 可以写成 <code>HEAD~100</code>。 <code>git push -f</code> 是令人嗤之以鼻的操作，因为它将远程仓库的提交记录完全覆盖为你本地的记录，这就有可能导致别人辛辛苦苦开发的代码都被你给搞没了！曾因为 <code>git push -f</code> 这个命令发生过命案你敢信！所以使用这个命令的时候一定要<strong>谨慎谨慎再谨慎</strong>！</p>
 <p>还有一种情况，就是你并没有权限使用 <code>git push -f</code> 这个命令。那么这种情况该如何回退呢？</p>
-<p>可以先将远程的 <code>master</code> 分支直接删除，然后将本地本地回退好的 <code>master</code> 分支推送至远程即可：</p>
+<p>可以先将远程的 <code>master</code> 分支删除，然后将本地回退后的 <code>master</code> 分支推送至远程：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard HEAD^</span><br><span class="line">$ git push origin --delete master</span><br><span class="line">$ git push origin master           <span class="comment"># 会重新创建新的远程 master 分支</span></span><br></pre></td></tr></table></figure>
 <p>当然，这种情况也一定不要忘记备份哦！</p>
 
