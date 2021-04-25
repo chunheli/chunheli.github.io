@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="psychology,">
+  <meta name="keywords" content="mysql,">
 
 
 
@@ -79,18 +79,21 @@
 
 
 
-<meta name="description" content="神父：“你愿意嫁给他，深入虎穴，成为他妈他姐的替身，接受他二十八年累积的愤怒吗？” 她：“我愿意。” 神父：“你愿意娶她，把你家变成主战场，成为他爸他哥的替身，接受她二十六年累积的幻想、嫉妒和仇恨吗？” 他：“我愿意。” 神父：“现在我宣布，你们正式结仇！”">
-<meta name="keywords" content="psychology">
+<meta name="description" content="首先，我们有一张数据字段如下的数据表。  现在，我想要取每个 event_id 下最新的 status 的值，于是，我瞬间写了如下的 sql： 12mysql&amp;gt; select event_id, status, max(id) from t_event_flow group by event_id;ERROR 1055 (42000): Expression #2 of SELECT lis">
+<meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于婚姻的真相">
-<meta property="og:url" content="http://yoursite.com/2020/03/19/the-truth-of-marriage/index.html">
+<meta property="og:title" content="关于 GROUP BY 踩过的小坑">
+<meta property="og:url" content="http://yoursite.com/2021/04/25/small-pit-about-group-by/index.html">
 <meta property="og:site_name" content="Richard&#39;s Blog">
-<meta property="og:description" content="神父：“你愿意嫁给他，深入虎穴，成为他妈他姐的替身，接受他二十八年累积的愤怒吗？” 她：“我愿意。” 神父：“你愿意娶她，把你家变成主战场，成为他爸他哥的替身，接受她二十六年累积的幻想、嫉妒和仇恨吗？” 他：“我愿意。” 神父：“现在我宣布，你们正式结仇！”">
+<meta property="og:description" content="首先，我们有一张数据字段如下的数据表。  现在，我想要取每个 event_id 下最新的 status 的值，于是，我瞬间写了如下的 sql： 12mysql&amp;gt; select event_id, status, max(id) from t_event_flow group by event_id;ERROR 1055 (42000): Expression #2 of SELECT lis">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-19T15:43:23.826Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/chunheli/my-images@master/20210425/image-20210425204258005.2cvqx7quvv8k.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/chunheli/my-images@master/20210425/image-20210425212818443.3ck41khugx20.png">
+<meta property="og:updated_time" content="2021-04-25T14:15:27.293Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于婚姻的真相">
-<meta name="twitter:description" content="神父：“你愿意嫁给他，深入虎穴，成为他妈他姐的替身，接受他二十八年累积的愤怒吗？” 她：“我愿意。” 神父：“你愿意娶她，把你家变成主战场，成为他爸他哥的替身，接受她二十六年累积的幻想、嫉妒和仇恨吗？” 他：“我愿意。” 神父：“现在我宣布，你们正式结仇！”">
+<meta name="twitter:title" content="关于 GROUP BY 踩过的小坑">
+<meta name="twitter:description" content="首先，我们有一张数据字段如下的数据表。  现在，我想要取每个 event_id 下最新的 status 的值，于是，我瞬间写了如下的 sql： 12mysql&amp;gt; select event_id, status, max(id) from t_event_flow group by event_id;ERROR 1055 (42000): Expression #2 of SELECT lis">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/chunheli/my-images@master/20210425/image-20210425204258005.2cvqx7quvv8k.png">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/19/the-truth-of-marriage/">
+  <link rel="canonical" href="http://yoursite.com/2021/04/25/small-pit-about-group-by/">
 
 
 
 
 
-  <title>关于婚姻的真相 | Richard's Blog</title>
+  <title>关于 GROUP BY 踩过的小坑 | Richard's Blog</title>
   
 
 
@@ -253,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/19/the-truth-of-marriage/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/25/small-pit-about-group-by/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Richard Li">
@@ -270,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于婚姻的真相</h1>
+          <h1 class="post-title" itemprop="name headline">关于 GROUP BY 踩过的小坑</h1>
         
 
         <div class="post-meta">
@@ -282,8 +285,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-19T23:43:23+08:00">
-                2020-03-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-04-25T21:36:30+08:00">
+                2021-04-25
               </time>
             
 
@@ -305,8 +308,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/idea/" itemprop="url" rel="index">
-                    <span itemprop="name">idea</span>
+                  <a href="/categories/sum-up/" itemprop="url" rel="index">
+                    <span itemprop="name">sum-up</span>
                   </a>
                 </span>
 
@@ -347,11 +350,35 @@
       
 
       
-        <p>神父：“你愿意嫁给他，深入虎穴，成为他妈他姐的替身，接受他二十八年累积的愤怒吗？”</p>
-<p>她：“我愿意。”</p>
-<p>神父：“你愿意娶她，把你家变成主战场，成为他爸他哥的替身，接受她二十六年累积的幻想、嫉妒和仇恨吗？”</p>
-<p>他：“我愿意。”</p>
-<p>神父：“现在我宣布，你们正式结仇！”</p>
+        <p>首先，我们有一张数据字段如下的数据表。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/chunheli/my-images@master/20210425/image-20210425204258005.2cvqx7quvv8k.png" alt="image-20210425204258005"></p>
+<p>现在，我想要取每个 event_id 下最新的 status 的值，于是，我瞬间写了如下的 sql：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select event_id, status, max(id) from t_event_flow group by event_id;</span><br><span class="line">ERROR 1055 (42000): Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column &apos;testdb.t_event_flow.status&apos; which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by</span><br></pre></td></tr></table></figure>
+<p>报错了，报错信息显示：SELECT 中的第 2 个字断不在 GROUP BY 的子句中，并且包含了非聚合列 status，且这个列在功能上不依赖于 GROUP BY 的子句，这跟 only_full_group_by 的 sql_mode 不符合。</p>
+<p>我们先查看当前的 SQL 模式：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/chunheli/my-images@master/20210425/image-20210425212818443.3ck41khugx20.png" alt="image-20210425212818443"></p>
+<p>查询 Mysql 的官方文档有以下说明：</p>
+<blockquote>
+<p>SQL-92 and earlier does not permit queries for which the select list, HAVING condition, or ORDER BY list refer to nonaggregated columns that are not named in the GROUP BY clause. </p>
+</blockquote>
+<blockquote>
+<p>MySQL 5.7.5 and later implements detection of functional dependence. If the ONLY_FULL_GROUP_BY SQL mode is enabled (which it is by default), MySQL rejects queries for which the select list, HAVING condition, or ORDER BY list refer to nonaggregated columns that are neither named in the GROUP BY clause nor are functionally dependent on them. (Before 5.7.5, MySQL does not detect functional dependency and ONLY_FULL_GROUP_BY is not enabled by default. For a description of pre-5.7.5 behavior, see the MySQL 5.6 Reference Manual.)</p>
+</blockquote>
+<p>意思是说，标准的 SQL-92 和之前的规范中，不允许查询在 select 后面的列、having 后的条件或order by 后面的列引用没有在 group by 中出现的非聚合列。Mysql 5.7 和之后的版本实现了功能依赖性的检测。如果 ONLY_FULL_GROUP_BY SQL 模式启用后（默认启用），Mysql 会拒绝在 select、having、order by 中引用了没有在 group by 子句中出现的或功能上依赖于他们的列的查询。</p>
+<p>所以说，上面的 sql 语句中不能出现非聚合列 status，应改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select event_id, max(id) from t_event_flow group by event_id;</span><br><span class="line">+----------+---------+</span><br><span class="line">| event_id | max(id) |</span><br><span class="line">+----------+---------+</span><br><span class="line">|    10000 |       4 |</span><br><span class="line">|    10001 |       7 |</span><br><span class="line">|    10002 |      11 |</span><br><span class="line">|    10003 |      15 |</span><br><span class="line">|    10004 |      18 |</span><br><span class="line">|    10005 |      21 |</span><br><span class="line">+----------+---------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>然后再根据主键 id 查询到对应的 status 即可。</p>
+<p>那么如果关闭 ONLY_FULL_GROUP_BY 模式呢？官方文档中有如下说明：</p>
+<blockquote>
+<p>If ONLY_FULL_GROUP_BY is disabled, a MySQL extension to the standard SQL use of GROUP BY permits the select list, HAVING condition, or ORDER BY list to refer to nonaggregated columns even if the columns are not functionally dependent on GROUP BY columns. This causes MySQL to accept the preceding query. In this case, the server is free to choose any value from each group, so unless they are the same, the values chosen are nondeterministic, which is probably not what you want.</p>
+</blockquote>
+<p>意思说，关闭后，Mysql 会接受上面的查询。不过在这种情况下，服务器会从每个分组中随机选择列的值，可能选到的值不是你想要的。我们试一试。</p>
+<p>先关闭 ONLY_FULL_GROUP_BY 模式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SET @@sql_mode = sys.list_drop(@@sql_mode, &apos;ONLY_FULL_GROUP_BY&apos;);</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>然后执行上面的查询：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select event_id, status, max(id) from t_event_flow group by event_id;</span><br><span class="line">+----------+--------+---------+</span><br><span class="line">| event_id | status | max(id) |</span><br><span class="line">+----------+--------+---------+</span><br><span class="line">|    10000 |      1 |       4 |</span><br><span class="line">|    10001 |      1 |       7 |</span><br><span class="line">|    10002 |      1 |      11 |</span><br><span class="line">|    10003 |      1 |      15 |</span><br><span class="line">|    10004 |      1 |      18 |</span><br><span class="line">|    10005 |      1 |      21 |</span><br><span class="line">+----------+--------+---------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>没有报错了，不过取到的 status 并不是我们想要的最新值，而是每个组默认取了第一条数据。</p>
+<p>综上，当后续使用 GROUP BY 操作时，应注意下当前设置的 SQL MODE，尽量不要去引用 GROUP BY 后未出现的列，不然要么就是报错，要么就是取值不准确。</p>
 
       
     </div>
@@ -369,7 +396,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/psychology/" rel="tag"># psychology</a>
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
           
         </div>
       
@@ -397,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/02/some-opinions-of-reading/" rel="next" title="关于阅读的几点见解">
-                <i class="fa fa-chevron-left"></i> 关于阅读的几点见解
+              <a href="/2020/12/30/2020-year-end-summary/" rel="next" title="2020 这一年的总结">
+                <i class="fa fa-chevron-left"></i> 2020 这一年的总结
               </a>
             
           </div>
@@ -406,10 +433,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/12/23/freely-scientficaly-safely-surf-the-Internet/" rel="prev" title="免费科学安全上网教程">
-                免费科学安全上网教程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
