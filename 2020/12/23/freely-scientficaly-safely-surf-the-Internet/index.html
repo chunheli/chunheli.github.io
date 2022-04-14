@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/favicon-32x32-github.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Internet,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="由于平时有上外网查资料的诉求，但是又不想买VPN，因为既不稳定又比较贵。于是就想着搞个服务器自己搭个梯子来上外网，之前购买过服务器，也要花钱而且网速也很差。后面跟同事了解到谷歌云服务器可以免费试用 3 个月（之前是 1 年…），自己抽空研究了下，发现网速十分给力，看油管 2k 毫无压力，于是就愉快地开启了免费科学安全上网之路。接下来我就介绍下具体该如何操作吧。 前期准备首先你要有个能够访问外网的环">
+<meta name="keywords" content="Internet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="免费科学安全上网教程">
+<meta property="og:url" content="http://yoursite.com/2020/12/23/freely-scientficaly-safely-surf-the-Internet/index.html">
+<meta property="og:site_name" content="Richard&#39;s Blog">
+<meta property="og:description" content="由于平时有上外网查资料的诉求，但是又不想买VPN，因为既不稳定又比较贵。于是就想着搞个服务器自己搭个梯子来上外网，之前购买过服务器，也要花钱而且网速也很差。后面跟同事了解到谷歌云服务器可以免费试用 3 个月（之前是 1 年…），自己抽空研究了下，发现网速十分给力，看油管 2k 毫无压力，于是就愉快地开启了免费科学安全上网之路。接下来我就介绍下具体该如何操作吧。 前期准备首先你要有个能够访问外网的环">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/1608562789341.png">
+<meta property="og:image" content="http://yoursite.com/images/1608564092535.png">
+<meta property="og:image" content="http://yoursite.com/images/1608564406232.png">
+<meta property="og:image" content="http://yoursite.com/images/1608564632810.png">
+<meta property="og:image" content="http://yoursite.com/images/1608565210094.png">
+<meta property="og:image" content="http://yoursite.com/images/1608566209343.png">
+<meta property="og:image" content="http://yoursite.com/images/1608567079801.png">
+<meta property="og:image" content="http://yoursite.com/images/1608567171555.png">
+<meta property="og:image" content="http://yoursite.com/images/1608567253481.png">
+<meta property="og:image" content="http://yoursite.com/images/1608567339826.png">
+<meta property="og:image" content="http://yoursite.com/images/1608565548224.png">
+<meta property="og:image" content="http://yoursite.com/images/1608567701813.png">
+<meta property="og:image" content="http://yoursite.com/images/1608567802313.png">
+<meta property="og:image" content="http://yoursite.com/images/1608568224405.png">
+<meta property="og:image" content="http://yoursite.com/images/1608568427950.png">
+<meta property="og:image" content="http://yoursite.com/images/1608568666386.png">
+<meta property="og:image" content="http://yoursite.com/images/1608568945396.png">
+<meta property="og:image" content="http://yoursite.com/images/1608570337384.png">
+<meta property="og:image" content="http://yoursite.com/images/1608570398759.png">
+<meta property="og:image" content="http://yoursite.com/images/1608570504827.png">
+<meta property="og:image" content="http://yoursite.com/images/1608571091678.png">
+<meta property="og:image" content="http://yoursite.com/images/1608570782268.png">
+<meta property="og:image" content="http://yoursite.com/images/1608570980167.png">
+<meta property="og:updated_time" content="2020-12-30T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="免费科学安全上网教程">
+<meta name="twitter:description" content="由于平时有上外网查资料的诉求，但是又不想买VPN，因为既不稳定又比较贵。于是就想着搞个服务器自己搭个梯子来上外网，之前购买过服务器，也要花钱而且网速也很差。后面跟同事了解到谷歌云服务器可以免费试用 3 个月（之前是 1 年…），自己抽空研究了下，发现网速十分给力，看油管 2k 毫无压力，于是就愉快地开启了免费科学安全上网之路。接下来我就介绍下具体该如何操作吧。 前期准备首先你要有个能够访问外网的环">
+<meta name="twitter:image" content="http://yoursite.com/images/1608562789341.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/12/23/freely-scientficaly-safely-surf-the-Internet/">
+
+
+
+
+
+  <title>免费科学安全上网教程 | Richard's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/chunheli" target="_blank" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Richard's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Do something fun.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/23/freely-scientficaly-safely-surf-the-Internet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Richard Li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/profile.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Richard's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">免费科学安全上网教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-23T00:00:00+08:00">
+                2020-12-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-12-31T00:00:00+08:00">
+                2020-12-31
+              </time>
+            
+          </span>
+          
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tutorial/" itemprop="url" rel="index">
+                    <span itemprop="name">tutorial</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>   Views
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>由于平时有上外网查资料的诉求，但是又不想买VPN，因为既不稳定又比较贵。于是就想着搞个服务器自己搭个梯子来上外网，之前购买过服务器，也要花钱而且网速也很差。后面跟同事了解到谷歌云服务器可以免费试用 3 个月（之前是 1 年…），自己抽空研究了下，发现网速十分给力，看油管 2k 毫无压力，于是就愉快地开启了免费科学安全上网之路。接下来我就介绍下具体该如何操作吧。</p>
+<h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><p>首先你要有个能够访问外网的环境，注册一个谷歌账户，还要准备一张外币信用卡（比如 visa 信用卡），用来申请谷歌云服务器。为了搭梯子，我直接办了张 visa 信用卡。</p>
+<h3 id="试用申请"><a href="#试用申请" class="headerlink" title="试用申请"></a>试用申请</h3><p>登陆 <a href="https://cloud.google.com/free/" target="_blank" rel="noopener">https://cloud.google.com/free/</a> 网站，填写个人信息。国家/地区选择<strong>美国</strong>，同意<strong>服务条款</strong>，点继续。</p>
+<p><img src="/images/1608562789341.png" alt="1608563778312"></p>
+<p>账号类型选择<strong>个人</strong>，将信用卡信息按要求正确填写，填写后会弹出地址信息。</p>
+<p><img src="/images/1608564092535.png" alt="1608564092535"></p>
+<p>百度美国地址生成器，随机生成一份地址信息。</p>
+<p><img src="/images/1608564406232.png" alt="1608564406232"></p>
+<p>将地址信息对应填入，点击<strong>开始免费试用</strong>。</p>
+<p><img src="/images/1608564632810.png" alt="1608564632810"></p>
+<p>进入到 console，可以在 Billing 界面看到谷歌赠送的 300$ 和剩余的试用天数。试用申请完毕，接下来我们开始准备创建服务器。</p>
+<p><img src="/images/1608565210094.png" alt="1608565210094"></p>
+<h3 id="创建防火墙规则"><a href="#创建防火墙规则" class="headerlink" title="创建防火墙规则"></a>创建防火墙规则</h3><p>首先我们创建防火墙规则，因为在创建服务器时需要配置防火墙。选择 VPC network 中的 Firewall，点击 CREATE FIREWALL RULE 创建防火墙。</p>
+<p><img src="/images/1608566209343.png" alt="1608566209343"></p>
+<p>先创建个名字为 in 的防火墙规则（我已经创建过了），设置优先级为 1，将框出来的部分按我的配置配，其余项保持默认，最后点击创建。</p>
+<p><img src="/images/1608567079801.png" alt="1608567079801"></p>
+<p><img src="/images/1608567171555.png" alt="1608567171555"></p>
+<p>再创建个名字为 out 的防火墙规则，注意我文字说明的部分要改一下，然后创建。</p>
+<p><img src="/images/1608567253481.png" alt="1608567253481"></p>
+<p><img src="/images/1608567339826.png" alt="1608567339826"></p>
+<h3 id="创建服务器"><a href="#创建服务器" class="headerlink" title="创建服务器"></a>创建服务器</h3><p>点击 Compute Engine 中的 VM instances，点击 CREATE INSTANCE 创建服务器。</p>
+<p><img src="/images/1608565548224.png" alt="1608565548224"></p>
+<p>为服务器取个名字，然后选择地区，推荐香港，延迟很低，网速杠杠的。机器选择微型，系统选择 CentOS 7，其他保持默认。注意系统不要选错了，否则会导致后续的脚本安装失败。</p>
+<p><img src="/images/1608567701813.png" alt="1608567701813"></p>
+<p>防火墙全选，并在网络标签处输入刚刚创建的两个防火墙规则的名字，其他保持默认，然后点击创建，一台属于你自己的服务器就这样诞生了。接下来可以在窗口 ping 一下生成的 ip，一般延迟不会超过 30 ms。</p>
+<p><img src="/images/1608567802313.png" alt="1608567802313"></p>
+<p><img src="/images/1608568224405.png" alt="1608568224405"></p>
+<p>接下来要将你的 ip 设置成静态 ip，这个就是梯子服务器的 ip 了。</p>
+<p><img src="/images/1608568427950.png" alt="1608568427950"></p>
+<h3 id="连接服务器"><a href="#连接服务器" class="headerlink" title="连接服务器"></a>连接服务器</h3><p>直接点击这个 ssh 就可以通过浏览器连接到服务器了，不过每次连接都会比较慢，最好可以通过本地终端的 ssh 链接。</p>
+<p><img src="/images/1608568666386.png" alt="1608568666386"></p>
+<p>需要先网页登录服务器，获取下 root 权限，然后重置下密码，将 <code>/etc/ssh/sshd_config</code> 中 <code>PermitRootLogin no</code> 改为 <code>PermitRootLogin yes</code>，<code>PasswordAuthentication no</code> 改为<code>PasswordAuthentication yes</code>，然后执行 <code>systemctl restart sshd</code> 重启，就可以通过 <code>ssh root@host</code> 的方式用密码登录了。</p>
+<p><img src="/images/1608568945396.png" alt="1608568945396"></p>
+<p><img src="/images/1608570337384.png" alt="1608570337384"></p>
+<p><img src="/images/1608570398759.png" alt="1608570398759"></p>
+<h3 id="执行脚本安装ssr"><a href="#执行脚本安装ssr" class="headerlink" title="执行脚本安装ssr"></a>执行脚本安装ssr</h3><p>接下来执行 ssr 安装脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -sL https://raw.githubusercontent.com/hijkpw/scripts/master/centos_install_ssr.sh)</span><br></pre></td></tr></table></figure>
+<p>如果是在浏览器 ssh 连接记得要先获取 root 权限后再执行。设置下密码和端口，其余全默认即可，等待安装完成。</p>
+<p><img src="/images/1608570504827.png" alt="1608570504827"></p>
+<p>显示此图说明安装完成，快拿小本本记录下配置信息吧~</p>
+<p><img src="/images/1608571091678.png" alt="1608571091678"></p>
+<h3 id="下载ssr客户端并连接"><a href="#下载ssr客户端并连接" class="headerlink" title="下载ssr客户端并连接"></a>下载ssr客户端并连接</h3><p>接下来下载 ssr 客户端，到 <a href="https://github.com/shadowsocks" target="_blank" rel="noopener">https://github.com/shadowsocks</a> 下载对应系统的客户端。下载安装完成后，将 ssr 服务器的地址、端口、密码输入，改个备注，其余保持默认，最好再设置个开机启动。</p>
+<p><img src="/images/1608570782268.png" alt="1608570782268"></p>
+<h3 id="访问外网测试"><a href="#访问外网测试" class="headerlink" title="访问外网测试"></a>访问外网测试</h3><p>打开油管测试下网速吧，2k 视频毫无无压力。</p>
+<p><img src="/images/1608570980167.png" alt="1608570980167"></p>
+<p>操作过程中遇到问题可以在下方评论留言哈~</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Internet/" rel="tag"># Internet</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/19/the-truth-of-marriage/" rel="next" title="关于婚姻的真相">
+                <i class="fa fa-chevron-left"></i> 关于婚姻的真相
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/30/2020-year-end-summary/" rel="prev" title="2020 这一年的总结">
+                2020 这一年的总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80Mzg3OS8yMDQxNA"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/profile.png" alt="Richard Li">
+            
+              <p class="site-author-name" itemprop="name">Richard Li</p>
+              <p class="site-description motion-element" itemprop="description">须知参差多态，乃是幸福的本源</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chunheli" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1019383102@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/chunheli" target="_blank" title="ZhiHu">
+                      
+                        <i class="fa fa-fw fa-book"></i>ZhiHu</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/chunheli" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前期准备"><span class="nav-number">1.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#试用申请"><span class="nav-number">2.</span> <span class="nav-text">试用申请</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建防火墙规则"><span class="nav-number">3.</span> <span class="nav-text">创建防火墙规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建服务器"><span class="nav-number">4.</span> <span class="nav-text">创建服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接服务器"><span class="nav-number">5.</span> <span class="nav-text">连接服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行脚本安装ssr"><span class="nav-number">6.</span> <span class="nav-text">执行脚本安装ssr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载ssr客户端并连接"><span class="nav-number">7.</span> <span class="nav-text">下载ssr客户端并连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问外网测试"><span class="nav-number">8.</span> <span class="nav-text">访问外网测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Richard Li</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> Visitors
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> Views
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

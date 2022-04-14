@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/favicon-32x32-github.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo,Next,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="平时就有记录的习惯，我经常使用的记录软件是有道云笔记，因为它和印象笔记相比使用起来更加简洁方便。后面觉得 Hexo 的 Next 主题搭建的个人博客界面也很干净简洁，十分喜欢，更重要的是写博客也是一件很 cool 的事。于是我花了一天的时间，在 Mac 环境下使用 Hexo + Github 搭建了个人博客。因为 GitHub Pages 免费提供的空间功能，整个搭建过程很简单，我接下来介绍如何搭">
+<meta name="keywords" content="Hexo,Next">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac 下使用 Hexo + GitHub 搭建个人博客">
+<meta property="og:url" content="http://yoursite.com/2019/04/21/make-your-own-blog/index.html">
+<meta property="og:site_name" content="Richard&#39;s Blog">
+<meta property="og:description" content="平时就有记录的习惯，我经常使用的记录软件是有道云笔记，因为它和印象笔记相比使用起来更加简洁方便。后面觉得 Hexo 的 Next 主题搭建的个人博客界面也很干净简洁，十分喜欢，更重要的是写博客也是一件很 cool 的事。于是我花了一天的时间，在 Mac 环境下使用 Hexo + Github 搭建了个人博客。因为 GitHub Pages 免费提供的空间功能，整个搭建过程很简单，我接下来介绍如何搭">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-21T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac 下使用 Hexo + GitHub 搭建个人博客">
+<meta name="twitter:description" content="平时就有记录的习惯，我经常使用的记录软件是有道云笔记，因为它和印象笔记相比使用起来更加简洁方便。后面觉得 Hexo 的 Next 主题搭建的个人博客界面也很干净简洁，十分喜欢，更重要的是写博客也是一件很 cool 的事。于是我花了一天的时间，在 Mac 环境下使用 Hexo + Github 搭建了个人博客。因为 GitHub Pages 免费提供的空间功能，整个搭建过程很简单，我接下来介绍如何搭">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/21/make-your-own-blog/">
+
+
+
+
+
+  <title>Mac 下使用 Hexo + GitHub 搭建个人博客 | Richard's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/chunheli" target="_blank" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Richard's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Do something fun.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/21/make-your-own-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Richard Li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/profile.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Richard's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mac 下使用 Hexo + GitHub 搭建个人博客</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-21T00:00:00+08:00">
+                2019-04-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-04-22T00:00:00+08:00">
+                2019-04-22
+              </time>
+            
+          </span>
+          
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tutorial/" itemprop="url" rel="index">
+                    <span itemprop="name">tutorial</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>   Views
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>平时就有记录的习惯，我经常使用的记录软件是有道云笔记，因为它和印象笔记相比使用起来更加简洁方便。后面觉得 Hexo 的 Next 主题搭建的个人博客界面也很干净简洁，十分喜欢，更重要的是写博客也是一件很 cool 的事。于是我花了一天的时间，在 Mac 环境下使用 Hexo + Github 搭建了个人博客。因为 GitHub Pages 免费提供的空间功能，整个搭建过程很简单，我接下来介绍如何搭建它，希望大家都有一个属于自己的博客去记录人生的点滴趣事。</p>
+<p>主要包括：</p>
+<ol>
+<li>注册登陆 GitHub 账号并新建个人博客仓库</li>
+<li>安装 Node.js 和 git</li>
+<li>安装 Hexo</li>
+<li>初始化博客界面</li>
+<li>本地博客关联 GitHub</li>
+<li>更换 Hexo 主题</li>
+<li>增加标签、分类、归档页</li>
+<li>设置头像</li>
+<li>侧边栏社交信息展示</li>
+<li>Gitalk 实现评论功能</li>
+<li>使用 Typora 编辑器</li>
+</ol>
+<h3 id="注册登陆-GitHub-账号并新建个人博客仓库"><a href="#注册登陆-GitHub-账号并新建个人博客仓库" class="headerlink" title="注册登陆 GitHub 账号并新建个人博客仓库"></a>注册登陆 GitHub 账号并新建个人博客仓库</h3><p>登陆 <a href="https://github.com/" target="_blank" rel="noopener">GitHub官网</a> 注册个人 GitHub 账号，然后创建仓库，仓库名要采用 <code>yourusername.github.io</code> 的固定格式。创建完成后，会自动生成属于你的个人站点：<code>https://yourusername.github.io</code> ，这就是你的个人博客网址了。不过别急，它现在还没有内容。</p>
+<h3 id="安装-Node-js-和-git"><a href="#安装-Node-js-和-git" class="headerlink" title="安装 Node.js 和 git"></a>安装 Node.js 和 git</h3><p>可以去 <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js官网</a> 和 <a href="https://git-scm.com/" target="_blank" rel="noopener">git官网</a> 直接下载。当然也可以使用 homebrew 下载。</p>
+<p>下载 homebrew :</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>下载 git ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install git</span><br></pre></td></tr></table></figure>
+<p>下载 Node.js ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install node</span><br></pre></td></tr></table></figure>
+<p>输入以下命令检查是否下载成功，成功则会显示版本号：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git --version</span><br><span class="line">git version 2.18.0</span><br><span class="line"></span><br><span class="line">$ node -v</span><br><span class="line">v10.15.3</span><br></pre></td></tr></table></figure>
+<h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h3><p>Node.js 和 git 都安装完成后，开始安装 Hexo，<code>-g</code> 表示全局安装，<code>sudo</code> 要输入密码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install -g hexo</span><br></pre></td></tr></table></figure>
+<h3 id="初始化博客界面"><a href="#初始化博客界面" class="headerlink" title="初始化博客界面"></a>初始化博客界面</h3><p>Hexo 安装完毕后，就可以创建博客项目了，比如可以在家目录下创建 MyBlog 项目文件夹，并进入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir MyBlog</span><br><span class="line">$ <span class="built_in">cd</span> MyBlog</span><br></pre></td></tr></table></figure>
+<p>接下来执行下述命令进行初始化，下载一系列博客初始化文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
+<p>执行下述命令安装 npm：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install</span><br></pre></td></tr></table></figure>
+<p>接下来执行下述命令生成本地网页文件并开启服务器，然后通过 <code>http://localhost:4000</code> 即可访问本地初始博客界面：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+<h3 id="本地博客关联-GitHub"><a href="#本地博客关联-GitHub" class="headerlink" title="本地博客关联 GitHub"></a>本地博客关联 GitHub</h3><p>进入到项目文件夹，打开站点配置文件 <code>_config.yml</code> ，使用 <code>vim</code> 命令打开即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim _config.yml</span><br></pre></td></tr></table></figure>
+<p>按 <code>G</code> 来到文件末尾，将 <code>delopy</code> 字段进行如下配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/yourusername/yourusername.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>注意每个字段后面都有一个空格，配置好后分别执行下述命令完成静态文件生成和上传至服务器操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g  //生成缓存和静态文件</span><br><span class="line">$ hexo d  //部署到服务器</span><br></pre></td></tr></table></figure>
+<p>若执行 <code>hexo g</code> 时报错，则执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo --save</span><br></pre></td></tr></table></figure>
+<p>若执行 <code>hexo d</code> 时报错，则执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>错误修正之后，直接执行 <code>hexo g &amp;&amp; hexo d</code> 即可完成服务器上传操作。如果没有关联 GitHub，执行 <code>hexo d</code> 时会提示输入 GitHub 账号和密码，输入即可。 <code>hexo d</code> 执行成功后就可以通过 <code>https://yourusername.github.io</code> 访问你的博客了，看到的内容和 <code>http://localhost:4000</code> 相同。</p>
+<h3 id="更换-Hexo-主题"><a href="#更换-Hexo-主题" class="headerlink" title="更换 Hexo 主题"></a>更换 Hexo 主题</h3><p>可以去 <a href="https://hexo.io/themes/" target="_blank" rel="noopener">Hexo主题官网</a> 搜索自己喜欢的主题，我的博客使用的是 hexo-them-next 主题，是我个人最喜欢的一款，也是 GitHub 中 Hexo 主题 star 最高的，简洁干净，强烈推荐。</p>
+<p>在 MyBlog 目录下执行下述命令克隆主题文件到当前目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<p>将站点配置文件 <code>_config.yml</code> 打开，将 <code>theme</code>  字段更改为 <code>next</code>，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+<p>然后执行以下命令完成部署， <code>hexo clean</code> 是为了清除缓存文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+<p>这样就可以看到 next 主题界面了，界面详细配置步骤，可以在 <a href="https://theme-next.iissnan.com/" target="_blank" rel="noopener">next官网</a> 查看，下面我来介绍一些基本的配置。</p>
+<h3 id="增加标签、分类、归档页"><a href="#增加标签、分类、归档页" class="headerlink" title="增加标签、分类、归档页"></a>增加标签、分类、归档页</h3><p>到项目目录，新建一个页面，命名为 <code>tags</code> ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> MyBlog</span><br><span class="line">$ hexo new page tags</span><br></pre></td></tr></table></figure>
+<p>编辑刚刚新建的页面，添加 <code>type</code> 字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: 标签</span><br><span class="line">date: 2014-12-22 12:39:04</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>然后打开主题配置文件中 <code>tags</code> 前的 <code>#</code>，使用 <code>hexo g &amp;&amp; hexo d</code> 重新上传至服务器，就可以看到标签页了，分类页 <code>categories</code> 和归档页  <code>archives</code> 同理。</p>
+<h3 id="设置头像"><a href="#设置头像" class="headerlink" title="设置头像"></a>设置头像</h3><p>编辑主题配置文件，比如可以在主题目录下 <code>source</code> 新建 <code>uploads</code> 目录，将你的头像文件 <code>profile.png</code> 放进去，然后在配置文件中修改 <code>avatar</code> 字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Sidebar Avatar</span><br><span class="line"># in theme directory(source/images): /images/avatar.gif</span><br><span class="line"># in site  directory(source/uploads): /uploads/avatar.gif</span><br><span class="line">avatar: /uploads/profile.png</span><br></pre></td></tr></table></figure>
+<p>重新上传至服务器，则可以看到新设置的头像。</p>
+<h3 id="侧边栏社交信息展示"><a href="#侧边栏社交信息展示" class="headerlink" title="侧边栏社交信息展示"></a>侧边栏社交信息展示</h3><p>编辑主题配置文件，修改 <code>social</code> 字段，将需要展示的信息前面的 <code>#</code> 打开即可，如需新增，可以按照相同的格式来新增，比如我增加了 <code>ZhiHu</code> 和 <code>Weibo</code>， <code>||</code> 后面的是信息图标的名称，可以在 <a href="https://fontawesome.com/" target="_blank" rel="noopener">Font Awesome官网</a> 查到，由于知乎没有相应的图标，我是用 <code>book</code> 来代替。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">social:</span><br><span class="line">  GitHub: https://github.com/chunheli || github</span><br><span class="line">  ...</span><br><span class="line">  ZhiHu: https://www.zhihu.com/people/chunheli || book</span><br><span class="line">  Weibo: https://weibo.com/chunheli || weibo</span><br></pre></td></tr></table></figure>
+<h3 id="Gitalk实现评论功能"><a href="#Gitalk实现评论功能" class="headerlink" title="Gitalk实现评论功能"></a>Gitalk实现评论功能</h3><p>实现评论功能的方式有很多种，不过个人觉得 Gitalk 是最值得推荐的，因为它不仅稳定，看起来也十分简洁。首先需要创建 GitHub 验证应用 <a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">Register a new OAuth application</a>，需要填写以下内容：</p>
+<table>
+<thead>
+<tr>
+<th><strong>项目</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Application name</td>
+<td>应用名称，会在登录评论的登录验证界面展示，比如可以填：Richard’s Blog</td>
+</tr>
+<tr>
+<td>Homepage URL</td>
+<td>可以填博客主页，如：<code>https://chunheli.github.io/</code></td>
+</tr>
+<tr>
+<td>Application description</td>
+<td>应用简介，如：Richard’s Blog</td>
+</tr>
+<tr>
+<td>Authorization callback URL</td>
+<td>必须填该博客主页，如： <code>https://chunheli.github.io/</code></td>
+</tr>
+</tbody>
+</table>
+<p>创建完成后会获得 Client ID 和 Client Secret，在你的主题配置文件中添加以下信息，并将其填至对应位置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gitalk:</span><br><span class="line">  enable: true</span><br><span class="line">  githubID: chunheli  //你的 username</span><br><span class="line">  repo: blog-comments  //你存放评论记录的仓库名，比如可以单独建立一个名为 blog-comments 的仓库</span><br><span class="line">  ClientID: ****  </span><br><span class="line">  ClientSecret: ****</span><br><span class="line">  adminUser: chunheli  //你的 username</span><br><span class="line">  distractionFreeMode: true</span><br></pre></td></tr></table></figure>
+<p>新建 <code>/layout/_third-party/comments/gitalk.swig</code> 文件，并添加内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="keyword">if</span> page.comments &amp;&amp; theme.gitalk.enable %&#125;</span><br><span class="line">  &lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"https://unpkg.com/gitalk/dist/gitalk.css"</span>&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script src=<span class="string">"https://unpkg.com/gitalk/dist/gitalk.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">   &lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">        var gitalk = new Gitalk(&#123;</span><br><span class="line">          clientID: <span class="string">'&#123;&#123; theme.gitalk.ClientID &#125;&#125;'</span>,</span><br><span class="line">          clientSecret: <span class="string">'&#123;&#123; theme.gitalk.ClientSecret &#125;&#125;'</span>,</span><br><span class="line">          repo: <span class="string">'&#123;&#123; theme.gitalk.repo &#125;&#125;'</span>,</span><br><span class="line">          owner: <span class="string">'&#123;&#123; theme.gitalk.githubID &#125;&#125;'</span>,</span><br><span class="line">          admin: [<span class="string">'&#123;&#123; theme.gitalk.adminUser &#125;&#125;'</span>],</span><br><span class="line">          id: location.pathname,</span><br><span class="line">          distractionFreeMode: <span class="string">'&#123;&#123; theme.gitalk.distractionFreeMode &#125;&#125;'</span></span><br><span class="line">        &#125;)</span><br><span class="line">        gitalk.render(<span class="string">'gitalk-container'</span>)           </span><br><span class="line">       &lt;/script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+<p>修改 <code>/layout/_partials/comments.swig</code> ，添加以下内容，注意要和前面的 <code>else if</code> 在同一级：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% elseif theme.gitalk.enable %&#125;</span><br><span class="line">  &lt;div id=<span class="string">"gitalk-container"</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>修改 <code>layout/_third-party/comments/index.swig</code> ，在最后一行添加内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% include <span class="string">'gitalk.swig'</span> %&#125;</span><br></pre></td></tr></table></figure>
+<p>新建 <code>/source/css/_common/components/third-party/gitalk.styl</code> 文件，添加内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.gt-header a, .gt-comments a, .gt-popup a</span><br><span class="line">  border-bottom: none;</span><br><span class="line">.gt-container .gt-popup .gt-action.is--active:before</span><br><span class="line">  top: 0.7em;</span><br></pre></td></tr></table></figure>
+<p>修改<code>/source/css/_common/components/third-party/third-party.styl</code>，在最后一行上添加内容，引入样式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import <span class="string">"gitalk"</span>;</span><br></pre></td></tr></table></figure>
+<p>重新上传至服务器即可看到评论界面。</p>
+<h3 id="使用-Typora-编辑器"><a href="#使用-Typora-编辑器" class="headerlink" title="使用 Typora 编辑器"></a>使用 Typora 编辑器</h3><p>到这一步你的博客搭建就基本完成了，接下来就可以撰写你的第一篇博客。我推荐使用 Typora 编辑器，特点依然是十分简洁好用。将编辑好的 <code>.md</code> 文件存放在 <code>source/_posts/</code> 目录下， 上传至服务器就可以看到你的博客了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+            <a href="/tags/Next/" rel="tag"># Next</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/04/use-git-more-smoothly/" rel="prev" title="更流畅地使用分布式版本控制系统 git">
+                更流畅地使用分布式版本控制系统 git <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80Mzg3OS8yMDQxNA"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/profile.png" alt="Richard Li">
+            
+              <p class="site-author-name" itemprop="name">Richard Li</p>
+              <p class="site-description motion-element" itemprop="description">须知参差多态，乃是幸福的本源</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chunheli" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1019383102@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/chunheli" target="_blank" title="ZhiHu">
+                      
+                        <i class="fa fa-fw fa-book"></i>ZhiHu</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/chunheli" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册登陆-GitHub-账号并新建个人博客仓库"><span class="nav-number">1.</span> <span class="nav-text">注册登陆 GitHub 账号并新建个人博客仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-Node-js-和-git"><span class="nav-number">2.</span> <span class="nav-text">安装 Node.js 和 git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-Hexo"><span class="nav-number">3.</span> <span class="nav-text">安装 Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化博客界面"><span class="nav-number">4.</span> <span class="nav-text">初始化博客界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地博客关联-GitHub"><span class="nav-number">5.</span> <span class="nav-text">本地博客关联 GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更换-Hexo-主题"><span class="nav-number">6.</span> <span class="nav-text">更换 Hexo 主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增加标签、分类、归档页"><span class="nav-number">7.</span> <span class="nav-text">增加标签、分类、归档页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置头像"><span class="nav-number">8.</span> <span class="nav-text">设置头像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#侧边栏社交信息展示"><span class="nav-number">9.</span> <span class="nav-text">侧边栏社交信息展示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gitalk实现评论功能"><span class="nav-number">10.</span> <span class="nav-text">Gitalk实现评论功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Typora-编辑器"><span class="nav-number">11.</span> <span class="nav-text">使用 Typora 编辑器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Richard Li</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> Visitors
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> Views
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

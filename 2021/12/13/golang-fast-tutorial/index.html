@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/favicon-32x32-github.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="golang,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="安装（Linux 环境）按以下命令安装： 123456# 下载安装包wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz# 解压rm -rf /usr/local/go &amp;amp;&amp;amp; tar -C /usr/local -xzf go1.17.5.linux-amd64.tar.gz# 设置环境变量export PATH=$PATH:/usr">
+<meta name="keywords" content="golang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="golang 快速入门教程小记">
+<meta property="og:url" content="http://yoursite.com/2021/12/13/golang-fast-tutorial/index.html">
+<meta property="og:site_name" content="Richard&#39;s Blog">
+<meta property="og:description" content="安装（Linux 环境）按以下命令安装： 123456# 下载安装包wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz# 解压rm -rf /usr/local/go &amp;amp;&amp;amp; tar -C /usr/local -xzf go1.17.5.linux-amd64.tar.gz# 设置环境变量export PATH=$PATH:/usr">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/chunheli/my-images@master/20211214/xxx.k5w51lpx4ww.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/chunheli/my-images@master/20211214/xxx.7ice88ko6ts0.png">
+<meta property="og:updated_time" content="2021-12-13T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="golang 快速入门教程小记">
+<meta name="twitter:description" content="安装（Linux 环境）按以下命令安装： 123456# 下载安装包wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz# 解压rm -rf /usr/local/go &amp;amp;&amp;amp; tar -C /usr/local -xzf go1.17.5.linux-amd64.tar.gz# 设置环境变量export PATH=$PATH:/usr">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/chunheli/my-images@master/20211214/xxx.k5w51lpx4ww.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/12/13/golang-fast-tutorial/">
+
+
+
+
+
+  <title>golang 快速入门教程小记 | Richard's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/chunheli" target="_blank" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Richard's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Do something fun.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/13/golang-fast-tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Richard Li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/profile.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Richard's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">golang 快速入门教程小记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-12-13T00:00:00+08:00">
+                2021-12-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2021-12-14T00:00:00+08:00">
+                2021-12-14
+              </time>
+            
+          </span>
+          
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tutorial/" itemprop="url" rel="index">
+                    <span itemprop="name">tutorial</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>   Views
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="安装（Linux-环境）"><a href="#安装（Linux-环境）" class="headerlink" title="安装（Linux 环境）"></a>安装（Linux 环境）</h1><p>按以下命令安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载安装包</span></span><br><span class="line">wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz</span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">rm -rf /usr/<span class="built_in">local</span>/go &amp;&amp; tar -C /usr/<span class="built_in">local</span> -xzf go1.17.5.linux-amd64.tar.gz</span><br><span class="line"><span class="comment"># 设置环境变量</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/<span class="built_in">local</span>/go/bin</span><br></pre></td></tr></table></figure>
+<p>检查是否安装成功，输出版本后表示安装成功。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go version</span><br><span class="line">go version go1.17.5 linux/amd64</span><br></pre></td></tr></table></figure>
+<h1 id="写-hello-world"><a href="#写-hello-world" class="headerlink" title="写 hello world"></a>写 hello world</h1><p>创建项目：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> &amp;&amp; mkdir hello &amp;&amp; <span class="built_in">cd</span> hello</span><br></pre></td></tr></table></figure>
+<p>初始化依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go mod init example/hello</span><br><span class="line">go: creating new go.mod: module example/hello</span><br></pre></td></tr></table></figure>
+<p>创建 hello.go 文件，贴入代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">"Hello, World!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go run .</span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
+<p>好了，golang之路已开启。</p>
+<h1 id="调用三方包"><a href="#调用三方包" class="headerlink" title="调用三方包"></a>调用三方包</h1><p>引入 <code>rsc.io/quote</code> 三方包：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"rsc.io/quote"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(quote.Go())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>添加新的模块依赖和 sum 值，需要联网：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ go mod tidy</span><br><span class="line">go: finding module <span class="keyword">for</span> package rsc.io/quote</span><br><span class="line">go: found rsc.io/quote <span class="keyword">in</span> rsc.io/quote v1.5.2</span><br></pre></td></tr></table></figure>
+<p>跑一跑：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go run .</span><br><span class="line">Don<span class="string">'t communicate by sharing memory, share memory by communicating.</span></span><br></pre></td></tr></table></figure>
+<h1 id="再多整点代码"><a href="#再多整点代码" class="headerlink" title="再多整点代码"></a>再多整点代码</h1><p>接下来我们看看怎么写一个其他人可以使用的模块，首先创建一个新项目 <code>greetings</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> &amp;&amp; mkdir greetings &amp;&amp; <span class="built_in">cd</span> greetings</span><br></pre></td></tr></table></figure>
+<p>初始化：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go mod init example.com/greetings</span><br><span class="line">go: creating new go.mod: module example.com/greetings</span><br></pre></td></tr></table></figure>
+<p>创建文件 greetings.go，加入代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> greetings</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"errors"</span></span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"math/rand"</span></span><br><span class="line">    <span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Hello returns a greeting for the named person.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Hello</span><span class="params">(name <span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">string</span>, error)</span></span> &#123;</span><br><span class="line">    <span class="comment">// If no name was given, return an error with a message.</span></span><br><span class="line">    <span class="keyword">if</span> name == <span class="string">""</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name, errors.New(<span class="string">"empty name"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Create a message using a random format.</span></span><br><span class="line">    message := fmt.Sprintf(randomFormat(), name)</span><br><span class="line">    <span class="keyword">return</span> message, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Hellos returns a map that associates each of the named people</span></span><br><span class="line"><span class="comment">// with a greeting message.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Hellos</span><span class="params">(names []<span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>, error)</span></span> &#123;</span><br><span class="line">    <span class="comment">// A map to associate names with messages.</span></span><br><span class="line">    messages := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>)</span><br><span class="line">    <span class="comment">// Loop through the received slice of names, calling</span></span><br><span class="line">    <span class="comment">// the Hello function to get a message for each name.</span></span><br><span class="line">    <span class="keyword">for</span> _, name := <span class="keyword">range</span> names &#123;</span><br><span class="line">        message, err := Hello(name)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// In the map, associate the retrieved message with</span></span><br><span class="line">        <span class="comment">// the name.</span></span><br><span class="line">        messages[name] = message</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> messages, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Init sets initial values for variables used in the function.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">    rand.Seed(time.Now().UnixNano())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// randomFormat returns one of a set of greeting messages. The returned</span></span><br><span class="line"><span class="comment">// message is selected at random.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">randomFormat</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">    <span class="comment">// A slice of message formats.</span></span><br><span class="line">    formats := []<span class="keyword">string</span>&#123;</span><br><span class="line">        <span class="string">"Hi, %v. Welcome!"</span>,</span><br><span class="line">        <span class="string">"Great to see you, %v!"</span>,</span><br><span class="line">        <span class="string">"Hail, %v! Well met!"</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Return one of the message formats selected at random.</span></span><br><span class="line">    <span class="keyword">return</span> formats[rand.Intn(<span class="built_in">len</span>(formats))]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了引入上面写好的模块并调用，我们再创建个项目 <code>hello</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> .. &amp;&amp; mkdir hello &amp;&amp; <span class="built_in">cd</span> hello</span><br></pre></td></tr></table></figure>
+<p>初始化：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go mod init example.com/hello</span><br><span class="line">go: creating new go.mod: module example.com/hello</span><br></pre></td></tr></table></figure>
+<p>创建文件 hello.go，加入代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">    <span class="string">"log"</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"example.com/greetings"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">    // Set properties of the predefined Logger, including</span><br><span class="line">    // the <span class="built_in">log</span> entry prefix and a flag to <span class="built_in">disable</span> printing</span><br><span class="line">    // the time, <span class="built_in">source</span> file, and line number.</span><br><span class="line">    log.SetPrefix(<span class="string">"greetings: "</span>)</span><br><span class="line">    log.SetFlags(0)</span><br><span class="line"></span><br><span class="line">    // A slice of names.</span><br><span class="line">    names := []string&#123;<span class="string">"Gladys"</span>, <span class="string">"Samantha"</span>, <span class="string">"Darrin"</span>&#125;</span><br><span class="line"></span><br><span class="line">    // Request greeting messages <span class="keyword">for</span> the names.</span><br><span class="line">    messages, err := greetings.Hellos(names)</span><br><span class="line">    <span class="keyword">if</span> err != nil &#123;</span><br><span class="line">        log.Fatal(err)</span><br><span class="line">    &#125;</span><br><span class="line">    // If no error was returned, <span class="built_in">print</span> the returned map of</span><br><span class="line">    // messages to the console.</span><br><span class="line">    fmt.Println(messages)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来编辑 <code>example.com/hello</code> 模块使用本地 <code>example.com/greetings</code> 模块，首先在 hello 目录执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ go mod edit -replace example.com/greetings=../greetings</span><br></pre></td></tr></table></figure>
+<p>同步依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go mod edit -replace example.com/greetings=../greetings</span><br><span class="line">go: found example.com/greetings <span class="keyword">in</span> example.com/greetings v0.0.0-00010101000000-000000000000</span><br></pre></td></tr></table></figure>
+<p>最后执行代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go run .</span><br><span class="line">map[Darrin:Hail, Darrin! Well met! Gladys:Hi, Gladys. Welcome! Samantha:Hail, Samantha! Well met!]</span><br></pre></td></tr></table></figure>
+<h1 id="添加单元测试"><a href="#添加单元测试" class="headerlink" title="添加单元测试"></a>添加单元测试</h1><p>创建单测文件 <code>greetings_test.go</code>，在 <code>go</code> 中单测文件名是以 <code>_test.go</code> 结尾的，添加代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> greetings</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"testing"</span></span><br><span class="line">    <span class="string">"regexp"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// TestHelloName calls greetings.Hello with a name, checking</span></span><br><span class="line"><span class="comment">// for a valid return value.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestHelloName</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">    name := <span class="string">"Gladys"</span></span><br><span class="line">    want := regexp.MustCompile(<span class="string">`\b`</span>+name+<span class="string">`\b`</span>)</span><br><span class="line">    msg, err := Hello(<span class="string">"Gladys"</span>)</span><br><span class="line">    <span class="keyword">if</span> !want.MatchString(msg) || err != <span class="literal">nil</span> &#123;</span><br><span class="line">        t.Fatalf(<span class="string">`Hello("Gladys") = %q, %v, want match for %#q, nil`</span>, msg, err, want)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// TestHelloEmpty calls greetings.Hello with an empty string,</span></span><br><span class="line"><span class="comment">// checking for an error.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestHelloEmpty</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">    msg, err := Hello(<span class="string">""</span>)</span><br><span class="line">    <span class="keyword">if</span> msg != <span class="string">""</span> || err == <span class="literal">nil</span> &#123;</span><br><span class="line">        t.Fatalf(<span class="string">`Hello("") = %q, %v, want "", error`</span>, msg, err)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行单测命令 <code>go test -v</code>，查看结果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/chunheli/my-images@master/20211214/xxx.k5w51lpx4ww.png" alt="xxx"></p>
+<h1 id="编译安装应用"><a href="#编译安装应用" class="headerlink" title="编译安装应用"></a>编译安装应用</h1><p>在 hello 目录执行 <code>go build</code> 命令可将 <code>hello.go</code> 编译为二进制可执行文件 <code>hello</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ go build</span><br></pre></td></tr></table></figure>
+<p>然后我们运行一下试试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./hello</span><br><span class="line">map[Darrin:Great to see you, Darrin! Gladys:Hail, Gladys! Well met! Samantha:Hail, Samantha! Well met!]</span><br></pre></td></tr></table></figure>
+<p>接下来我们安装它来实现全局运行，首先可以通过命令查看系统当前的 go app 安装路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ go list -f <span class="string">'&#123;&#123;.Target&#125;&#125;'</span></span><br></pre></td></tr></table></figure>
+<p>注意这个是 go app 的安装路径，不是 go 语言的安装路径。</p>
+<p>可通过以下命令把 go app 安装路径配置到环境变量中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/path/to/your/install/directory</span><br></pre></td></tr></table></figure>
+<p>也可以通过以下命令来修改当前 go app 安装路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ go env -w GOBIN=/path/to/your/bin</span><br></pre></td></tr></table></figure>
+<p>更新好后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ go install</span><br></pre></td></tr></table></figure>
+<p>这样就完成了应用的编译安装。</p>
+<p>接下来可以在你的任意目录执行 <code>hello</code> 命令：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/chunheli/my-images@master/20211214/xxx.7ice88ko6ts0.png" alt="xxx"></p>
+<p>好了，就介绍这么多，其实都是按照官方文档一步一步操作来的。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://go.dev/doc/tutorial/getting-started" target="_blank" rel="noopener">Tutorial: Get started with Go</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/golang/" rel="tag"># golang</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/12/12/fix-curl-problem-on-linux-server/" rel="next" title="解决 curl: (35) Encountered end of file 问题">
+                <i class="fa fa-chevron-left"></i> 解决 curl: (35) Encountered end of file 问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/04/15/how-to-expand-disk-in-linux/" rel="prev" title="Linux 磁盘满了如何扩容">
+                Linux 磁盘满了如何扩容 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80Mzg3OS8yMDQxNA"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/profile.png" alt="Richard Li">
+            
+              <p class="site-author-name" itemprop="name">Richard Li</p>
+              <p class="site-description motion-element" itemprop="description">须知参差多态，乃是幸福的本源</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chunheli" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1019383102@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/chunheli" target="_blank" title="ZhiHu">
+                      
+                        <i class="fa fa-fw fa-book"></i>ZhiHu</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/chunheli" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装（Linux-环境）"><span class="nav-number">1.</span> <span class="nav-text">安装（Linux 环境）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写-hello-world"><span class="nav-number">2.</span> <span class="nav-text">写 hello world</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调用三方包"><span class="nav-number">3.</span> <span class="nav-text">调用三方包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#再多整点代码"><span class="nav-number">4.</span> <span class="nav-text">再多整点代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加单元测试"><span class="nav-number">5.</span> <span class="nav-text">添加单元测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编译安装应用"><span class="nav-number">6.</span> <span class="nav-text">编译安装应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Richard Li</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> Visitors
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> Views
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
